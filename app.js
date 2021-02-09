@@ -1,3 +1,4 @@
+/* eslint-disable */
 const Web3 = require('web3');
 const EthereumTx = require('ethereumjs-tx').Transaction
 const { alchemyApiKey, mnemonic, projectId, privateKey } = require('./secrets.json');
