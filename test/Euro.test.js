@@ -10,8 +10,6 @@ const {
   shouldBehaveLikeERC20Approve,
 } = require('./behaviors/ERC20.behavior');
 
-const { shouldBehaveLikeERC20Burnable } = require('./behaviors/ERC20Burnable.behavior');
-
 contract('Euro', function (accounts) {
   const [ initialHolder, minter, burner, recipient, anotherAccount, ...otherAccounts ] = accounts;
 
@@ -22,7 +20,16 @@ contract('Euro', function (accounts) {
   const initialSupply = new BN(100);
 
   beforeEach(async function () {
-    this.token = await Euro.new(name, symbol, decimals, initialHolder, initialSupply, minter, burner, { from: initialHolder });
+    this.token = await Euro.new(
+      name,
+      symbol,
+      decimals,
+      initialHolder,
+      initialSupply,
+      minter,
+      burner,
+      { from: initialHolder },
+    );
   });
 
   it('has a name', async function () {
@@ -84,9 +91,8 @@ contract('Euro', function (accounts) {
       expect(await this.token.balanceOf(initialHolder)).to.be.bignumber.equal(initialSupply);
 
       ({ logs: this.logs } = await this.token.burn(new BN(5), { from: burner }));
-    
       assert.equal(await this.token.balanceOf(initialHolder), initialSupply - new BN(5));
-      assert.equal(await this.token.totalSupply(), initialSupply-new BN(5));
+      assert.equal(await this.token.totalSupply(), initialSupply - new BN(5));
     });
     it('Burn #4 should fail to burn after call to finishBurning', async function () {
       expect(await this.token.balanceOf(initialHolder)).to.be.bignumber.equal(initialSupply);
@@ -99,15 +105,14 @@ contract('Euro', function (accounts) {
     });
     it('Burn #5 should fail to burn from non burner account', async function () {
       await expectRevert(
-        this.token.burn(initialSupply, {from: anotherAccount}), 'Euro: Caller is not a burner',
+        this.token.burn(initialSupply, { from: otherAccounts[0] }), 'Euro: Caller is not a burner',
       );
     });
     it('Burn #6 should fail to burn whe given amount is greater than the totalSupply', async function () {
       await expectRevert(
-        this.token.burn(initialSupply.addn(1), {from: burner}), 'ERC20: burn amount exceeds balance',
+        this.token.burn(initialSupply.addn(1), { from: burner }), 'ERC20: burn amount exceeds balance',
       );
     });
-
   });
 
   shouldBehaveLikeERC20('ERC20', initialSupply, initialHolder, recipient, anotherAccount);
@@ -275,13 +280,13 @@ contract('Euro', function (accounts) {
     const amount = new BN(50);
     it('rejects a null account', async function () {
       await expectRevert(
-        this.token.mint(ZERO_ADDRESS, amount, {from: minter}), 'ERC20: mint to the zero address',
+        this.token.mint(ZERO_ADDRESS, amount, { from: minter }), 'ERC20: mint to the zero address',
       );
     });
 
     describe('for a non zero account', function () {
       beforeEach('minting', async function () {
-        const { logs } = await this.token.mint(recipient, amount, {from: minter});
+        const { logs } = await this.token.mint(recipient, amount, { from: minter });
         this.logs = logs;
       });
 
@@ -309,14 +314,14 @@ contract('Euro', function (accounts) {
     describe('for a non zero account', function () {
       it('rejects burning more than balance', async function () {
         await expectRevert(
-          this.token.burn(initialSupply.addn(1), {from: burner}), 'ERC20: burn amount exceeds balance',
+          this.token.burn(initialSupply.addn(1), { from: burner }), 'ERC20: burn amount exceeds balance',
         );
       });
 
       const describeBurn = function (description, amount) {
         describe(description, function () {
           beforeEach('burning', async function () {
-            const { logs } = await this.token.burn(amount, {from: burner});
+            const { logs } = await this.token.burn(amount, { from: burner });
             this.logs = logs;
           });
 
@@ -373,6 +378,4 @@ contract('Euro', function (accounts) {
       });
     });
   });
-
-  shouldBehaveLikeERC20Burnable(initialHolder, initialSupply, burner);
 });
