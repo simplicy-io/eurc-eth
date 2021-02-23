@@ -1,4 +1,4 @@
-# EUR-ETH 
+# EUR-ETH
 EUR is an ERC-20 stablecoin - Smart contract of digital EUR on Ethereum Blockchain
 
 
@@ -16,19 +16,19 @@ node --version
 
 2. Install packages
 ```
-npm install
+yarn
 ```
 
 4. Download, install and open [Ganache](https://www.trufflesuite.com/ganache)
 
 5. Compile solidity with truffle
 ```
-npx truffle compile
+yarn truffle compile
 ```
 
 5. Deploy smart contracts to your localhost Ethereum Ganache
 ```
-npx truffle migrate --network development
+yarn truffle migrate --network development
 ```
 
 result of your deployment:
@@ -96,12 +96,12 @@ Summary
 
 ## Interacting from the Console
 ```
-$ npx truffle console --network development
+$ yarn truffle console --network development
 truffle(development)> Euro = await Euro.deployed()
 undefined
 ```
 
-### Minting Euro coin 
+### Minting Euro coin
 Use Owner adres for examample:0x7904bF7aC4EdC845b2057d2F44A1D19e33468ce5
 Minting 500 Euro coins:
 We are using 6 decimals which means 500000000 to mint
@@ -128,26 +128,26 @@ Make sure you change your network to Ganache Development in Metamask and read [t
 ## Testing and linting
 Running unit test
 ```
-npm run test
+yarn test
 ```
 
 Running test coverage
 ```
-npm run coverage
+yarn coverage
 ```
 
 Lint solidity
 ```
-npm run lint:sol
+yarn lint:sol
 ```
 
 ## Connecting to public test networks
 see also [Connecting to public test networks](https://docs.openzeppelin.com/learn/connecting-to-public-test-networks)
 
-### Create a new account 
+### Create a new account
 To send transactions in a testnet, you will need a new Ethereum account using mnemonics package
 ```
-npx mnemonics
+yarn mnemonics
 drama film snack motion ...
 ```
 
@@ -167,7 +167,7 @@ Using [Rinkeby Authenticated Faucet](https://faucet.rinkeby.io/)
 or using [MetaMask’s faucet](https://faucet.metamask.io/)
 
 ### Deploy and migrate to rinkeby
-npx truffle migrate --network rinkeby
+yarn truffle migrate --network rinkeby
 
 ## Security
 
