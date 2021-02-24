@@ -11,11 +11,12 @@ contract('Euro', function (accounts) {
   const name = 'Euro stable coin';
   const symbol = 'EURC';
   const decimals = 6;
+  const uri = 'https://eurc.simplicy.io/bank-balance';
 
   const initialSupply = new BN(100);
 
   beforeEach(async function () {
-    this.ownable = await Euro.new(name, symbol, decimals, owner, initialSupply, minter, burner, { from: owner });
+    this.ownable = await Euro.new(name, symbol, decimals, uri, owner, initialSupply, minter, burner, { from: owner });
   });
 
   it('has an owner', async function () {

@@ -16,6 +16,8 @@ contract('Euro', function (accounts) {
   const name = 'Euro stable coin';
   const symbol = 'EURC';
   const decimals = 6;
+  const uri = 'https://eurc.simplicy.io/';
+  const newUri = 'https://eurc.simplicy.io/new';
 
   const initialSupply = new BN(100);
 
@@ -24,6 +26,7 @@ contract('Euro', function (accounts) {
       name,
       symbol,
       decimals,
+      uri,
       initialHolder,
       initialSupply,
       minter,
@@ -42,6 +45,17 @@ contract('Euro', function (accounts) {
 
   it('has 6 decimals', async function () {
     expect(await this.token.decimals()).to.be.bignumber.equal('6');
+  });
+
+  it('has uri', async function () {
+    expect(await this.token.uri()).to.equal(uri);
+  });
+
+  describe('setUrl', function () {
+    it(' URI can be set', async function () {
+      await this.token.setUrl(newUri, { from : initialHolder });
+      expect(await this.token.uri()).to.equal(newUri);
+    });
   });
 
   describe('mint', function () {
