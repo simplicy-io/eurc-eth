@@ -16,19 +16,19 @@ node --version
 
 2. Install packages
 ```
-npm install
+yarn
 ```
 
 4. Download, install and open [Ganache](https://www.trufflesuite.com/ganache)
 
 5. Compile solidity with truffle
 ```
-npx truffle compile
+yarn truffle compile
 ```
 
 5. Deploy smart contracts to your localhost Ethereum Ganache
 ```
-npx truffle migrate --network development
+yarn truffle migrate --network development
 ```
 
 result of your deployment:
@@ -96,7 +96,7 @@ Summary
 
 ## Interacting from the Console
 ```
-$ npx truffle console --network development
+$ yarn truffle console --network development
 truffle(development)> Euro = await Euro.deployed()
 undefined
 ```
@@ -128,17 +128,17 @@ Make sure you change your network to Ganache Development in Metamask and read [t
 ## Testing and linting
 Running unit test
 ```
-npm run test
+yarn test
 ```
 
 Running test coverage
 ```
-npm run coverage
+yarn coverage
 ```
 
 Lint solidity
 ```
-npm run lint:sol
+yarn lint:sol
 ```
 
 ## Connecting to public test networks
@@ -147,7 +147,7 @@ see also [Connecting to public test networks](https://docs.openzeppelin.com/lear
 ### Create a new account 
 To send transactions in a testnet, you will need a new Ethereum account using mnemonics package
 ```
-npx mnemonics
+yarn mnemonics
 drama film snack motion ...
 ```
 
@@ -168,17 +168,17 @@ or using [MetaMask’s faucet](https://faucet.metamask.io/)
 
 ### Deploy and migrate to rinkeby
 ```
-npx truffle migrate --network rinkeby
+yarn truffle migrate --network rinkeby
 ```
 
 ### Deploy and migrate to Ropsten
 ```
-npx truffle migrate --network ropsten
+yarn truffle migrate --network ropsten
 ```
 
 ### Deploy and migrate to Binance testnet
 ```
-npx truffle migrate --network binance_testnet
+yarn truffle migrate --network binance_testnet
 ```
 
 

@@ -19,7 +19,7 @@ As a contributor, you are expected to fork this repository, work on your own for
 cd eurc-eth
 git remote add upstream https://github.com/simplicy-io/eurc-eth.git
 git fetch upstream
-git pull --rebase upstream master
+git pull --rebase upstream main
 ```
 NOTE: The directory `eurc-eth` represents your fork's local copy.
 

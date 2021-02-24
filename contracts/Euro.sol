@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Euro is AccessControl, ERC20Burnable, Ownable {
     bool public mintingFinished = false;
     bool public burningFinished = false;
+    string private _uri;
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
@@ -31,16 +32,30 @@ contract Euro is AccessControl, ERC20Burnable, Ownable {
         string memory name,
         string memory symbol,
         uint8 decimals,
+        string memory uri_,
         address initialAccount,
         uint256 initialBalance,
         address minter, 
         address burner
     ) public payable ERC20(name, symbol) {
+        _uri = uri_;
         _setupDecimals(decimals);
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(MINTER_ROLE, minter);
         _setupRole(BURNER_ROLE, burner);
         _mint(initialAccount, initialBalance);
+    }
+
+     /**
+     * @dev Returns the uri of the bank balance.
+     */
+    function uri() public view returns (string memory) {
+        return _uri;
+    }
+
+    function setUrl(string memory uri_) public {
+        require(hasRole(DEFAULT_ADMIN_ROLE, _msgSender()), "Euro: Caller is not admin");
+        _uri = uri_;
     }
 
     function mint(address account, uint256 amount) public canMint {

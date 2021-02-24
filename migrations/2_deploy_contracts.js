@@ -3,5 +3,5 @@ module.exports = function (deployer, network, accounts) {
   const initialAccount = accounts[0];
   const minter = accounts[1];
   const burner = accounts[3];
-  deployer.deploy(Euro, 'EURO coin', 'EURC', 6, initialAccount, 100000000, minter, burner);
+  deployer.deploy(Euro, 'EURO coin', 'EURC', 6, 'https://eurc.simplicy.io/',initialAccount, 100000000, minter, burner);
 };
