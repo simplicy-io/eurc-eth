@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { mnemonic, projectId } = require('./secrets.json');
+const { mnemonic, projectId, bscApiKey } = require('./secrets.json');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
@@ -27,12 +27,33 @@ module.exports = {
       network_id: 42,
       skipDryRun: true,
     },
+    binance_testnet: {
+      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+      network_id: 97,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    bsc: {
+      provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),
+      network_id: 56,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
   mocha: {
+    timeout: 100000
   },
   compilers: {
     solc: {
       version: '0.7.5',
     },
   },
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    bscscan: bscApiKey
+  }
 };

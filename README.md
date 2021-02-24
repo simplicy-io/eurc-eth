@@ -167,7 +167,45 @@ Using [Rinkeby Authenticated Faucet](https://faucet.rinkeby.io/)
 or using [MetaMask’s faucet](https://faucet.metamask.io/)
 
 ### Deploy and migrate to rinkeby
+```
 npx truffle migrate --network rinkeby
+```
+
+### Deploy and migrate to Ropsten
+```
+npx truffle migrate --network ropsten
+```
+
+### Deploy and migrate to Binance testnet
+```
+npx truffle migrate --network binance_testnet
+```
+
+
+## Verify your contract on Binance Smart Chain
+
+
+1. Generate an API Key on your BSCscan account
+
+If you don't have one yet, just go to [this page](https://bscscan.com/login) to sign up.
+
+
+Add your BSCscan API key to your secrets.json
+
+
+2.  Deploy your contract
+
+```
+truffle compile
+truffle migrate --network binance_testnet
+```
+
+3. Verify your contract
+
+```
+truffle run verify BEP20Token@{deployed-address} --network binance_testnet
+
+```
 
 ## Security
 
