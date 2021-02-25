@@ -27,6 +27,8 @@
 - [Ropsten](https://faucet.ropsten.be/)
 - [Kovan](https://faucet.kovan.network/)
 - [MetaMask](https://faucet.metamask.io/)
+- [Binance Test])(https://testnet.binance.org/faucet-smart)
+- [Moonbean Alphanet](https://rpc.testnet.moonbeam.network)
 
 ## Ethereum API
 - [Infura](https://infura.io/)

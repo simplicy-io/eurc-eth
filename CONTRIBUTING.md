@@ -40,8 +40,8 @@ git push origin fix/some-bug-#123
 4) Run tests, linter, etc. This can be done by running local continuous integration and make sure it passes.
 
 ```bash
-npm test
-npm run lint
+yarn test
+yarn lint
 ```
 
 5) Go to [github.com/simplicy-io/eurc-eth](https://github.com/simplicy-io/eurc-eth) in your web browser and issue a new pull request.
