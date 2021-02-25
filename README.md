@@ -207,6 +207,41 @@ truffle run verify BEP20Token@{deployed-address} --network binance_testnet
 
 ```
 
+## Step by Step Installation Moonbean using Truffle
+1. Make sure you have node v15.8.0 or higher, check it with
+```
+node --version
+```
+
+2. Install packages
+```
+yarn
+```
+
+3. Run a Standalone Moonbean TestNet
+```
+truffle run moonbeam install
+```
+4. Start the Standalone Moonbean TestNet
+```
+Node has started - Endpoints: HTTP http://127.0.0.1:9933  WS ws://127.0.0.1:9944 - Container ID 7804c8f439c9 
+```
+
+5. Compile solidity with truffle
+```
+yarn truffle compile
+```
+
+5. Deploy smart contracts to your localhost Ethereum Ganache
+```
+truffle migrate --network moonbean_dev
+```
+
+### Deploy and migrate to Moonbean testnet
+```
+yarn truffle migrate --network moonbase
+```
+
 ## Security
 
 If you find a security issue, please join our Discord

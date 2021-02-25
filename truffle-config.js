@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { mnemonic, projectId, bscApiKey } = require('./secrets.json');
+const { mnemonic, projectId, bscApiKey, privateKey } = require('./secrets.json');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
@@ -7,7 +7,11 @@ module.exports = {
     development: {
       host: '127.0.0.1',
       port: 7545,
-      network_id: '*',
+      network_id: '43',
+    },
+    moonbean_dev: {
+      provider: () => new HDWalletProvider(mnemonic, `http://localhost:9933/`),
+      network_id: 43,
     },
     ropsten: {
       provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${projectId}`),
@@ -41,8 +45,8 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
-    moonbean_test: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rpc.testnet.moonbeam.network`),
+    moonbase: {
+      provider: () => new HDWalletProvider(privateKey, `https://rpc.testnet.moonbeam.network`),
       network_id: 1287,
       timeoutBlocks: 200,
       skipDryRun: true

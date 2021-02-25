@@ -60,5 +60,6 @@
     "web3": "^1.3.3"
   },
   "dependencies": {
+    "moonbeam-truffle-plugin": "^1.2.2"
   }
 }
