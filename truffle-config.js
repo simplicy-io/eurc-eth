@@ -41,6 +41,12 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    moonbean_test: {
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc.testnet.moonbeam.network`),
+      network_id: 1287,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
   mocha: {
     timeout: 100000
@@ -51,7 +57,8 @@ module.exports = {
     },
   },
   plugins: [
-    'truffle-plugin-verify'
+    'truffle-plugin-verify',
+    'moonbeam-truffle-plugin'
   ],
   api_keys: {
     bscscan: bscApiKey
